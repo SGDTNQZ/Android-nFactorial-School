@@ -14,41 +14,66 @@ val Pink40 = Color(0xFF7D5260)
 
 
 data class Colors(
-    val text : TextColor,
-    val link : LinkColor,
-    val brand : BrandColor
+    val textColors : TextColors,
+    val linkColors : LinkColors,
+    val brandColors : BrandColors,
+    val etColors: EtColors
 )
 
-data class TextColor(
+data class TextColors(
     val primary : Color,
-    val secondary : Color,
-    val search : Color
+    val white : Color,
+    val gray900 : Color,
+    val darkerGray900: Color,
+    val red: Color
 )
 
-data class LinkColor(
-    val primary: Color,
+data class LinkColors(
+    val blue: Color,
+    val red : Color,
     val activated : Color
 )
 
-data class BrandColor(
-    val primary: Color,
-    val secondary: Color
+data class BrandColors(
+    val red: Color,
+    val lightGray900: Color,
+    val white: Color,
+    val gray900: Color,
+    val lightGray: Color
+)
+
+data class EtColors(
+    val etFillColor: Color,
+    val etErrorColor: Color,
+    val etStrokeColor: Color
 )
 
 val appColors = Colors(
-    text = TextColor(
+    textColors = TextColors(
         primary = Color(0xFF1F1F1F),
-        secondary = Color(0xFFF6F6F6),
-        search = Color(0xFFB2B2B2)
+        white = Color(0xFFFFFFFF),
+        gray900 = Color(0xFFB2B2B2),
+        darkerGray900 = Color(0xFFA9A9A9),
+        red = Color(0xFFDF1323),
+
     ),
-    link = LinkColor(
-        primary = Color(0xFF16A1ED),
+    linkColors = LinkColors(
+        blue = Color(0xFF16A1ED),
+        red = Color(0xFFDF1323),
         activated = Color(0xFF6650a4),
     ),
-    brand = BrandColor(
-        primary = Color(0xFFDF1323),
-        secondary = Color(0xFFF6F6F6),
-        )
+    brandColors = BrandColors(
+        red = Color(0xFFDF1323),
+        lightGray900 = Color(0xFFF6F6F6),
+        white = Color(0xFFFFFFFF),
+        gray900 = Color(0xFFB2B2B2),
+        lightGray = Color(0xFFDBDBDB)
+        ),
+    etColors = EtColors(
+        etFillColor = Color(0xFFFFFFFF),
+        etErrorColor = Color(0xFFDF1323),
+        etStrokeColor = Color(0xFFDBDBDB)
+    )
 )
 
 internal val LocalColors = staticCompositionLocalOf { appColors }

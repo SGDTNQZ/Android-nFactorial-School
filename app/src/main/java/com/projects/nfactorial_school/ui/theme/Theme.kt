@@ -2,7 +2,6 @@ package com.projects.nfactorial_school.ui.theme
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.material3.Typography
 
 
 @Composable
@@ -13,7 +12,7 @@ fun NFactorialSchoolTheme(
         LocalTypography provides appTypography,
         LocalColors provides appColors
     ) {
-        content
+        content()
     }
 
 }
@@ -21,9 +20,9 @@ fun NFactorialSchoolTheme(
 object AppTheme{
     val colors : Colors
     @Composable
-    get() = appColors
+    get() = LocalColors.current
 
     val fonts : Typography
     @Composable
-    get()  = appTypography
+    get() = LocalTypography.current
 }
