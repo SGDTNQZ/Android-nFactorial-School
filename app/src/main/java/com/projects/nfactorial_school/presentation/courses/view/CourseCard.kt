@@ -2,16 +2,19 @@ package com.projects.nfactorial_school.presentation.courses.view
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.Text
@@ -50,6 +53,8 @@ fun CourseCard(
 ) {
     Card (
         modifier = Modifier
+            .width(174.dp)
+            .height(210.dp)
             .clickable {  },
         shape = RoundedCornerShape(10.dp)
     ){
@@ -58,7 +63,7 @@ fun CourseCard(
                 painter = painterResource(courseInfo.imageRes),
                 contentDescription = "background image",
                 modifier = Modifier.fillMaxSize(),
-                contentScale = ContentScale.Crop
+                contentScale = ContentScale.FillBounds
             )
             Box(
                 modifier = Modifier
@@ -71,7 +76,7 @@ fun CourseCard(
             )
             Column(
                 modifier = Modifier
-                    .padding(start = 14.dp, bottom = 14.dp)
+                    .padding(start = 14.dp, bottom = 14.dp, end = 36.dp)
                     .fillMaxSize(),
                 verticalArrangement = Arrangement.Bottom
             ) {
@@ -85,15 +90,35 @@ fun CourseCard(
                     style = AppTheme.fonts.bodyTypography.bodyRegular,
                     color = AppTheme.colors.textColors.white,
                     fontWeight = FontWeight.Bold,
-                    modifier = Modifier.padding(top = 4.dp, end = 25.dp)
+                    modifier = Modifier.padding(top = 4.dp)
                         .fillMaxWidth()
                 )
-                Text(
-                    text = courseInfo.price,
-                    style = AppTheme.fonts.captionTypography.captionSmall,
-                    color = AppTheme.colors.textColors.white,
-                )
+                Row {
+                    InfoCircles(courseInfo.price)
+                    InfoCircles(courseInfo.duration)
+                }
+                InfoCircles(courseInfo.levelNeeded)
+
             }
         }
     }
+}
+
+@Composable
+fun InfoCircles(
+    text: String
+){
+    Box(
+        modifier = Modifier
+            .padding(top = 4.dp, end = 4.dp)
+            .border(1.dp, AppTheme.colors.brandColors.white, CircleShape)
+            .padding(horizontal = 8.dp, vertical = 5.dp),
+
+
+    ){
+        Text(
+            text = text,
+            style = AppTheme.fonts.captionTypography.captionSmall,
+            color = AppTheme.colors.textColors.white,
+        )    }
 }
