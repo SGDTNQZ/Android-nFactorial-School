@@ -1,14 +1,17 @@
 package com.projects.nfactorial_school.presentation.login.view
 
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.navigationBars
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -18,26 +21,27 @@ import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.projects.nfactorial_school.R
+import com.projects.nfactorial_school.presentation.login.event.LoginEvent
+import com.projects.nfactorial_school.presentation.login.state.LoginState
 import com.projects.nfactorial_school.presentation.topBar.TopBar
 import com.projects.nfactorial_school.ui.theme.AppTheme
 
 @Composable
-fun LoginScreen() {
-    var login by remember { mutableStateOf("") }
-    var password by remember { mutableStateOf("") }
+fun LoginScreen(
+    state: LoginState,
+    onEvent: (LoginEvent) -> Unit
+) {
+
     Column(
         modifier = Modifier
             .fillMaxSize()
+            .padding(WindowInsets.navigationBars.asPaddingValues())
             .background(
                 color = AppTheme.colors.brandColors.lightGray900
             ),
@@ -52,11 +56,30 @@ fun LoginScreen() {
             horizontalAlignment = Alignment.CenterHorizontally
         ){
             Header()
-            EtLogin(login) {login = it}
-            EtPassword (password) {password = it}
-            BtnLogin()
+            EtLogin(
+                state.login,
+                onEvent
+            )
+            EtPassword (
+                state.password,
+                onEvent
+            )
+            if (!state.errorMessage.isNullOrEmpty()) {
+                Spacer(modifier = Modifier.height(8.dp))
+                Text(
+                    text = state.errorMessage,
+                    style = AppTheme.fonts.captionTypography.captionRegular,
+                    color = AppTheme.colors.textColors.red,
+                    modifier = Modifier.padding(horizontal = 70.dp)
+                )
+            }
+            BtnLogin(
+                onEvent = onEvent
+            )
         }
-        BottomLink()
+        BottomLink(
+            onEvent = onEvent
+        )
 
     }
 }
@@ -78,7 +101,7 @@ fun Header(){
 @Composable
 fun EtLogin(
     login : String,
-    onLoginChange : (String) -> Unit
+    onEvent: (LoginEvent) -> Unit
 ){
     Row (
         modifier = Modifier
@@ -102,7 +125,9 @@ fun EtLogin(
             ),
             shape = RoundedCornerShape(10.dp),
             value = login,
-            onValueChange = onLoginChange,
+            onValueChange = {
+                onEvent(LoginEvent.OnLoginChange(it))
+            },
             textStyle = AppTheme.fonts.bodyTypography.bodyRegular,
             maxLines = 1,
             placeholder = {
@@ -117,8 +142,8 @@ fun EtLogin(
 
 @Composable
 fun EtPassword(
-    login : String,
-    onLoginChange : (String) -> Unit
+    password : String,
+    onEvent: (LoginEvent) -> Unit
 ){
     Row (
         modifier = Modifier
@@ -141,8 +166,10 @@ fun EtPassword(
                 unfocusedIndicatorColor = AppTheme.colors.etColors.etStrokeColor,
             ),
             shape = RoundedCornerShape(10.dp),
-            value = login,
-            onValueChange = onLoginChange,
+            value = password,
+            onValueChange = {
+                onEvent(LoginEvent.OnPasswordChange(it))
+            },
             textStyle = AppTheme.fonts.bodyTypography.bodyRegular,
             maxLines = 1,
             visualTransformation = PasswordVisualTransformation(),
@@ -157,13 +184,17 @@ fun EtPassword(
 }
 
 @Composable
-fun BtnLogin(){
+fun BtnLogin(
+    onEvent: (LoginEvent) -> Unit
+){
     Button(
         modifier = Modifier
             .padding(top = 37.dp)
             .fillMaxWidth()
-            .padding(horizontal = 79.dp ),
-        onClick = { Log.d("Button was pressed", "Login button was pressed")},
+            .padding(horizontal = 79.dp),
+        onClick = {
+            onEvent(LoginEvent.OnLoginClick)
+        },
         colors = ButtonColors(
             containerColor = AppTheme.colors.brandColors.red,
             contentColor = AppTheme.colors.textColors.white,
@@ -179,7 +210,9 @@ fun BtnLogin(){
     }
 }
 @Composable
-fun BottomLink(){
+fun BottomLink(
+    onEvent: (LoginEvent) -> Unit
+){
     Row (
         modifier = Modifier
             .padding(top = 162.dp, bottom = 36.dp)
@@ -197,7 +230,7 @@ fun BottomLink(){
             style = AppTheme.fonts.captionTypography.captionRegular,
             color = AppTheme.colors.linkColors.red,
             modifier = Modifier.clickable {
-                Log.d("Link pressed", "Register link was pressed")
+                onEvent(LoginEvent.OnNavigateToRegistration)
             }
         )
     }

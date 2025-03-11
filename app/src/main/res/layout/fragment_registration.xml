@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     android:background="@color/gray_900">
 
-
     <LinearLayout
         android:id="@+id/ll_register_header"
         android:layout_width="0dp"
@@ -16,9 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.3"
-    >
-
+        app:layout_constraintVertical_bias="0.3">
         <TextView
             android:id="@+id/tvRegistrationHeader"
             style="@style/Headline"
@@ -38,9 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/ll_btn"
-        app:layout_constraintVertical_bias="0.5"
-    >
-
+        app:layout_constraintVertical_bias="0.5">
         <EditText
             android:id="@+id/et_login"
             android:layout_width="match_parent"
@@ -48,13 +43,12 @@
             android:layout_marginHorizontal="70dp"
             android:hint="@string/etLogin_placeholder"
             style="@style/Body"
-            android:textColor="@color/dark_gray_900"
+            android:textColor="@color/text_main"
             android:background="@drawable/et_shape"
             android:padding="14dp"
             android:importantForAutofill="no"
             android:inputType="textEmailAddress"
             android:paddingHorizontal="14dp"/>
-
         <EditText
             android:id="@+id/et_password"
             android:layout_width="match_parent"
@@ -63,18 +57,21 @@
             android:layout_marginHorizontal="70dp"
             android:hint="@string/etPassword_placeholder"
             style="@style/Body"
-            android:textColor="@color/dark_gray_900"
+            android:textColor="@color/text_main"
             android:background="@drawable/et_shape"
             android:padding="14dp"
             android:importantForAutofill="no"
             android:inputType="textPassword"
             android:paddingHorizontal="14dp"/>
         <TextView
+            android:id="@+id/tv_Error"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text=""
-            android:visibility="invisible"
-        />
+            android:layout_marginHorizontal="87dp"
+            android:layout_marginTop="8dp"
+            android:text="Должно быть минимум 5 символов"
+            android:textColor="@color/primary"
+            android:visibility="invisible"/>
     </LinearLayout>
 
     <LinearLayout
@@ -87,13 +84,13 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toTopOf="@id/ll_bottomLinks"
         app:layout_constraintVertical_bias="0.7">
-
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/tvRegister"
             android:background="@drawable/btn_shape"
+            android:gravity="center"
             style="@style/Body"
             android:textColor="@color/white"
             android:layout_marginHorizontal="79dp"/>
@@ -109,22 +106,20 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent">
-
         <TextView
             android:id="@+id/tv_haveAnAccount"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tvHaveAnAccount"
-            style="@style/Caption11"
-        />
+            style="@style/Caption11"/>
         <TextView
+            android:id="@+id/tvLoginLink"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/tvLinkLogin"
             android:layout_marginStart="4dp"
             style="@style/Caption11"
-            android:textColor="@color/primary"
-        />
+            android:textColor="@color/primary"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

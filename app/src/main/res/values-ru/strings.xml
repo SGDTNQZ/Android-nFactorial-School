@@ -37,6 +37,8 @@
     <string name="course_data_analytic">Аналитик данных</string>
 
     <string name="all_courses_button">Все курсы</string>
+    <string name="errorLoginEmpty">Логин и пароль не могут быть пустыми</string>
+    <string name="errorAuth">Ошибка авторизации</string>
 
 </resources>
 

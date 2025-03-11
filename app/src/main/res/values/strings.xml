@@ -43,5 +43,8 @@
 
     <string name="all_courses_button" translatable="true">All courses</string>
 
+    <string name="errorLoginEmpty" translatable="true">Login and password can not be empty</string>
+    <string name="errorAuth" translatable="true">Authorization error</string>
+
 
 </resources>
