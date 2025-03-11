@@ -13,6 +13,6 @@ fun ReviewScreen(){
         Text(
             text = "Review Screen"
         )
-        NavBar()
+        NavBar(2)
     }
 }

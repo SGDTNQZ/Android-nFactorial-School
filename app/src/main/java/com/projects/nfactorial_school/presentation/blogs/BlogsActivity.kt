@@ -7,7 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import com.projects.nfactorial_school.presentation.blogs.view.BlogsScreen
 import com.projects.nfactorial_school.ui.theme.NFactorialSchoolTheme
 
-class BlogActivity : ComponentActivity() {
+class BlogsActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         enableEdgeToEdge()
         super.onCreate(savedInstanceState)

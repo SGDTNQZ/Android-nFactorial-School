@@ -36,6 +36,24 @@
             android:theme="@style/Theme.NFactorialSchool">
 
         </activity>
+        <activity
+            android:name=".presentation.courses.CoursesActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NFactorialSchool">
+
+        </activity>
+        <activity
+            android:name=".presentation.blogs.BlogsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NFactorialSchool">
+
+        </activity>
+        <activity
+            android:name=".presentation.reviews.ReviewActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NFactorialSchool">
+
+        </activity>
 
     </application>
 

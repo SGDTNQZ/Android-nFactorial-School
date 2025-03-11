@@ -15,6 +15,6 @@ fun BlogsScreen(){
     ){
         TopBar()
         Text(text = "BlogsScreen")
-        NavBar()
+        NavBar(3)
     }
 }

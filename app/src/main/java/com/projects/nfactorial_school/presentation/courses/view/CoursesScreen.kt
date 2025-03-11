@@ -129,7 +129,7 @@ fun CoursesScreen(){
 
             ApplyBtn()
         }
-        NavBar()
+        NavBar(1)
     }
 }
 

@@ -138,7 +138,7 @@ fun MainScreen(){
 
             BtnAllCourses()
         }
-        NavBar()
+        NavBar(0)
     }
 }
 

@@ -1,7 +1,6 @@
 package com.projects.nfactorial_school.presentation.navBar
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import android.content.Intent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.material3.Icon
@@ -10,77 +9,93 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.NavigationBarItemDefaults
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableIntStateOf
-import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.projects.nfactorial_school.R
+import com.projects.nfactorial_school.presentation.blogs.BlogsActivity
+import com.projects.nfactorial_school.presentation.courses.CoursesActivity
+import com.projects.nfactorial_school.presentation.main.MainActivity
+import com.projects.nfactorial_school.presentation.reviews.ReviewActivity
 import com.projects.nfactorial_school.ui.theme.AppTheme
 
+data class NavItem(
+    val labelResource : Int,
+    val unselectedIconResource: Int,
+    val selectedIconResource: Int,
+    val contentDescription: Int,
+    val targetActivity: Class<*>
+)
 @Composable
-fun NavBar() {
-    var selected by remember { mutableIntStateOf(0) }
+fun NavBar(
+    currentIndex: Int
+){
+    val context = LocalContext.current
     val navItems = listOf(
         NavItem(
-            R.string.bb_main,
-            R.drawable.ic_main,
-            R.drawable.ic_main,
-            "Main icon"
+            labelResource = R.string.bb_main,
+            unselectedIconResource = R.drawable.ic_main,
+            selectedIconResource = R.drawable.ic_main_active,
+            contentDescription = R.string.bb_main,
+            targetActivity = MainActivity::class.java
         ),
         NavItem(
-            R.string.bb_courses,
-            R.drawable.ic_courses,
-            R.drawable.ic_courses_active,
-            "Courses icon"
+            labelResource = R.string.bb_courses,
+            unselectedIconResource = R.drawable.ic_courses,
+            selectedIconResource = R.drawable.ic_courses_active,
+            contentDescription = R.string.bb_reviews,
+            targetActivity = CoursesActivity::class.java
         ),
         NavItem(
-            R.string.bb_reviews,
-            R.drawable.ic_reviews,
-            R.drawable.ic_reviews_active,
-            "Reviews icon"
+            labelResource = R.string.bb_reviews,
+            unselectedIconResource = R.drawable.ic_reviews,
+            selectedIconResource = R.drawable.ic_reviews_active,
+            contentDescription = R.string.bb_reviews,
+            targetActivity = ReviewActivity::class.java
         ),
         NavItem(
-            R.string.bb_blogs,
-            R.drawable.ic_blogs,
-            R.drawable.ic_blogs_active,
-            "Blogs icon"
-        )
+            labelResource = R.string.bb_blogs,
+            unselectedIconResource = R.drawable.ic_blogs,
+            selectedIconResource = R.drawable.ic_blogs_active,
+            contentDescription = R.string.bb_blogs,
+            targetActivity = BlogsActivity::class.java
+        ),
     )
 
     NavigationBar(
         containerColor = AppTheme.colors.brandColors.white,
-        modifier = Modifier
-            .padding(vertical = 8.dp)
+        modifier = Modifier.padding(vertical = 8.dp)
     ) {
-        navItems.forEachIndexed { index, item ->
+        navItems.forEachIndexed{
+            index, item ->
+            val selected = currentIndex == index
             NavigationBarItem(
-                selected = selected == index,
+                selected = selected,
                 onClick = {
-                    selected = index
+                    if (!selected){
+                        context.startActivity(Intent(context, item.targetActivity))
+                    }
                 },
                 label = {
                     Text(
-                        text = stringResource(item.labelRes),
+                        text = stringResource(item.labelResource),
                         style = AppTheme.fonts.captionTypography.captionRegular
                     )
                 },
                 icon = {
                     Icon(
                         painter = painterResource(
-                            if (selected == index) {
-                                item.selectedIconRes
-                            } else {
-                                item.unselectedIconRes
+                            if (selected){
+                                item.selectedIconResource
+                            } else{
+                              item.unselectedIconResource
                             }
                         ),
-                        contentDescription = item.contentDescription,
-                        modifier = Modifier
-                            .size(28.dp)
+                        contentDescription = item.contentDescription.toString(),
+                        modifier = Modifier.size(28.dp)
                     )
                 },
                 colors = NavigationBarItemDefaults.colors(
@@ -94,10 +109,3 @@ fun NavBar() {
         }
     }
 }
-
-data class NavItem(
-    val labelRes: Int,
-    val unselectedIconRes: Int,
-    val selectedIconRes: Int,
-    val contentDescription: String
-)

@@ -9,6 +9,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
+import androidx.compose.ui.platform.ComposeView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
@@ -18,6 +19,8 @@ import com.projects.nfactorial_school.presentation.login.LoginActivity
 import com.projects.nfactorial_school.presentation.registration.event.RegistrationEvent
 import com.projects.nfactorial_school.presentation.registration.factory.RegistrationViewModelFactory
 import com.projects.nfactorial_school.presentation.registration.viewmodel.RegistrationViewModel
+import com.projects.nfactorial_school.presentation.topBar.TopBar
+import com.projects.nfactorial_school.ui.theme.NFactorialSchoolTheme
 
 class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
@@ -33,6 +36,12 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         val etPassword : EditText = view.findViewById(R.id.et_password)
         val tvError: TextView = view.findViewById(R.id.tv_Error)
         val tvLoginLink: TextView =view.findViewById(R.id.tvLoginLink)
+
+        view.findViewById<ComposeView>(R.id.composeTopBar).setContent {
+            NFactorialSchoolTheme{
+                TopBar()
+            }
+        }
 
         etLogin.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {

@@ -1,12 +1,18 @@
 package com.projects.nfactorial_school.data.token
 
 import android.content.Context
+import android.content.SharedPreferences
 
 class SharedPrefTokenProvider(context: Context) : TokenProvider {
-    private val prefs = context.getSharedPreferences(
-        "auth_prefs",
-        Context.MODE_PRIVATE
-    )
+
+    companion object {
+        private const val PREFS_NAME = "auth_prefs"
+        private const val KEY_TOKEN = "token"
+    }
+
+    private val prefs: SharedPreferences by lazy {
+        context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE)
+    }
 
     override fun getToken(): String {
         return prefs.getString("token","") ?: ""
@@ -14,5 +20,9 @@ class SharedPrefTokenProvider(context: Context) : TokenProvider {
 
     override fun saveToken(token: String) {
         prefs.edit().putString("token", token).apply()
+    }
+
+    fun clearToken() {
+        prefs.edit().remove(KEY_TOKEN).apply()
     }
 }

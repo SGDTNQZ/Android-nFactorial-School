@@ -19,7 +19,7 @@ fun CourseScreen(){
         Text(
             text = "Course Screen"
         )
-        NavBar()
+        NavBar(1)
 
     }
 }

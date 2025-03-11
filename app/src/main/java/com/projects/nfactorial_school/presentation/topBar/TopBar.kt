@@ -1,5 +1,9 @@
 package com.projects.nfactorial_school.presentation.topBar
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
+import android.content.res.Configuration
 import android.util.Log
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -10,19 +14,27 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import com.projects.nfactorial_school.R
+import com.projects.nfactorial_school.data.token.SharedPrefTokenProvider
+import com.projects.nfactorial_school.presentation.login.LoginActivity
 import com.projects.nfactorial_school.ui.theme.AppTheme
+import java.util.Locale
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopBar(){
+    val context = LocalContext.current
     CenterAlignedTopAppBar(
        title = {},
         navigationIcon = {
             IconButton(
-                onClick = { Log.d("nFactorial logo", "Logo was pressed")},
+                onClick = {
+                    Log.d("nFactorial logo", "Logo was pressed")
+                    changeLanguage(context)
+                          },
                 modifier = Modifier
                     .padding(start = 16.dp)
             ) {
@@ -35,7 +47,10 @@ fun TopBar(){
         },
         actions = {
             IconButton(
-                onClick = {Log.d("Login button", "Login button was pressed")},
+                onClick = {
+                    Log.d("Login button", "Login button was pressed")
+                    logOut(context)
+                          },
                 modifier = Modifier
                     .padding(end = 16.dp)
                     .size(40.dp)
@@ -53,4 +68,31 @@ fun TopBar(){
             actionIconContentColor = AppTheme.colors.brandColors.gray900,
             )
     )
+}
+
+fun logOut(
+    context: Context
+){
+    SharedPrefTokenProvider(context).clearToken()
+
+    val intent = Intent(context,LoginActivity::class.java)
+    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+    context.startActivity(intent)
+}
+
+fun changeLanguage(context: Context){
+    val currentLocale = context.resources.configuration.locales.get(0)
+    val newLocale = if(currentLocale.language == "ru"){
+        Locale("en")
+    }else{
+        Locale("ru")
+    }
+
+    Locale.setDefault(newLocale)
+    val config = Configuration(context.resources.configuration)
+    config.setLocale(newLocale)
+    context.resources.updateConfiguration(config, context.resources.displayMetrics)
+    if (context is Activity) {
+        context.recreate()
+    }
 }
