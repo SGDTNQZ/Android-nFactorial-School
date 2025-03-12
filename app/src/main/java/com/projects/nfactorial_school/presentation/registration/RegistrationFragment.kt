@@ -15,6 +15,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.projects.nfactorial_school.MainApp
 import com.projects.nfactorial_school.R
+import com.projects.nfactorial_school.domain.util.ErrorHandler
 import com.projects.nfactorial_school.presentation.login.LoginActivity
 import com.projects.nfactorial_school.presentation.registration.event.RegistrationEvent
 import com.projects.nfactorial_school.presentation.registration.factory.RegistrationViewModelFactory
@@ -25,7 +26,10 @@ import com.projects.nfactorial_school.ui.theme.NFactorialSchoolTheme
 class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     private val viewModel: RegistrationViewModel by viewModels{
-        RegistrationViewModelFactory((requireActivity().application as MainApp).authRepository)
+        RegistrationViewModelFactory(
+            (requireActivity().application as MainApp).authRepository,
+            ErrorHandler(requireActivity().application)
+        )
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
