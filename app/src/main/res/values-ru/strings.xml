@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?><resources>
+    <string name="tvLoginHeader" translatable="true">Вход в аккаунт</string>
+    <string name="etLogin_placeholder" translatable="true">Логин</string>
+    <string name="etPassword_placeholder" translatable="true">Пароль</string>
+    <string name="btnLogin" translatable="true">Войти</string>
+    <string name="tvRegistration" translatable="true">Регистрация</string>
+    <string name="tvNoAccount" translatable="true">Нет аккаунта?</string>
+    <string name="tvHaveAnAccount" translatable="true">Уже есть аккаунт?</string>
+    <string name="tvLinkLogin" translatable="true">Войти</string>
+    <string name="tvRegister" translatable="true">Зарегистрироваться</string>
+
+    <string name="bb_main" translatable="true">Главная</string>
+    <string name="bb_courses" translatable="true">Курсы</string>
+    <string name="bb_reviews" translatable="true">Отзывы</string>
+    <string name="bb_blogs" translatable="true">Блоги</string>
+
+
+    <string name="main_header">Помогаем каждому начать успешный путь в IT</string>
+    <string name="btn_apply">Оформить заявку</string>
+
+    <string name="graduates_companies">2500+ выпускников в топовых IT компаниях</string>
+    <string name="years_on_market">Существуем на рынке с</string>
+    <string name="year_2013">2013 года</string>
+    <string name="community">Дружное и большое комьюнити</string>
+
+    <string name="courses_and_programs">Курсы и программы</string>
+    <string name="filter_all">Все</string>
+    <string name="from_scratch">С нуля</string>
+    <string name="filter_with_experience">С базой в программировании</string>
+
+    <string name="course_teens_title">Программирование для детей</string>
+    <string name="course_price">от 590 000 ₸</string>
+    <string name="course_duration">12 недель</string>
+
+    <string name="course_sat_title">Хакнем SAT за 4 месяца</string>
+    <string name="course_start">Программированиедля начинающих</string>
+    <string name="course_data_analytic">Аналитик данных</string>
+
+    <string name="all_courses_button">Все курсы</string>
+    <string name="errorLoginEmpty">Логин и пароль не могут быть пустыми</string>
+    <string name="errorAuth">Ошибка авторизации</string>
+
+    <string name="error_bad_request">Неверный запрос</string>
+    <string name="error_auth">Ошибка авторизации</string>
+    <string name="error_forbidden">Доступ запрещён</string>
+    <string name="error_not_found">Не найдено</string>
+    <string name="error_user_exists">Пользователь с таким логином уже существует</string>
+    <string name="error_internal">Внутренняя ошибка сервера</string>
+    <string name="error_service_unavailable">Сервис недоступен</string>
+    <string name="error_server">Ошибка сервера: %1$d</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
+</resources>
+

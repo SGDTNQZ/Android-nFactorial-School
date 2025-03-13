@@ -1,3 +1,59 @@
 <resources>
-    <string name="app_name">nFactorial-School</string>
+    <string name="app_name" translatable="false">nFactorial-School</string>
+    <string name="tvLoginHeader" translatable="true">Login into the account</string>
+    <string name="etLogin_placeholder" translatable="true">Login</string>
+    <string name="etPassword_placeholder" translatable="true">Password</string>
+    <string name="btnLogin" translatable="true">Login</string>
+    <string name="tvRegistration" translatable="true">Registration</string>
+    <string name="tvNoAccount" translatable="true">No account?</string>
+    <string name="tvHaveAnAccount" translatable="true">Have an account?</string>
+    <string name="tvLinkLogin" translatable="true">Login</string>
+    <string name="tvRegister" translatable="true">Register</string>
+
+    <string name="bb_main" translatable="true">Main</string>
+    <string name="bb_courses" translatable="true">Courses</string>
+    <string name="bb_reviews" translatable="true">Reviews</string>
+    <string name="bb_blogs" translatable="true">Blogs</string>
+
+    <string name="main_header" translatable="true">Helping everyone start a successful path in IT</string>
+    <string name="btn_apply" translatable="true">Apply now</string>
+
+    <string name="graduates_companies" translatable="true">2500+ graduates in top IT companies</string>
+    <string name="years_on_market" translatable="true">We have been on the market since</string>
+    <string name="year_2013" translatable="true">2013</string>
+    <string name="community" translatable="true">A friendly and large community</string>
+
+    <string name="courses_and_programs" translatable="true">Courses and programs</string>
+    <string name="filter_all" translatable="true">All</string>
+    <string name="from_scratch" translatable="true">From scratch</string>
+    <string name="filter_with_experience" translatable="true">With programming experience</string>
+
+    <string name="nFactorialTeens" translatable="false">nFactorial Teens</string>
+    <string name="nFactorialSAT" translatable="false">nFactorial SAT</string>
+    <string name="nFactorialStart" translatable="false">nFactorial Start</string>
+    <string name="nFactorialDataAnalytics" translatable="false">nFactorial Data Analytics</string>
+
+    <string name="course_teens_title" translatable="true">Programming for kids</string>
+    <string name="course_price" translatable="true">from 590,000 ₸</string>
+    <string name="course_duration" translatable="true">12 weeks</string>
+
+    <string name="course_sat_title" translatable="true">Hack SAT in 4 months</string>
+    <string name="course_start">Programming for Beginners</string>
+    <string name="course_data_analytic">Data Analyst</string>
+
+    <string name="all_courses_button" translatable="true">All courses</string>
+
+    <string name="errorLoginEmpty" translatable="true">Login and password can not be empty</string>
+    <string name="errorAuth" translatable="true">Authorization error</string>
+
+    <string name="error_bad_request" translatable="true">Bad request</string>
+    <string name="error_auth" translatable="true">Authorization error</string>
+    <string name="error_forbidden" translatable="true">Forbidden</string>
+    <string name="error_not_found" translatable="true">Not found</string>
+    <string name="error_user_exists" translatable="true">User with this login already exists</string>
+    <string name="error_internal" translatable="true">Internal server error</string>
+    <string name="error_service_unavailable" translatable="true">Service unavailable</string>
+    <string name="error_server" translatable="true">Server error: %1$d</string>
+    <string name="error_unknown" translatable="true">Unknown error</string>
+
 </resources>
