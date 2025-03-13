@@ -18,8 +18,8 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.OutlinedTextFieldDefaults
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,6 +27,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.PasswordVisualTransformation
 import androidx.compose.ui.unit.dp
 import com.projects.nfactorial_school.R
+import com.projects.nfactorial_school.data.token.TokenProvider
 import com.projects.nfactorial_school.presentation.login.event.LoginEvent
 import com.projects.nfactorial_school.presentation.login.state.LoginState
 import com.projects.nfactorial_school.presentation.topBar.TopBar
@@ -35,7 +36,8 @@ import com.projects.nfactorial_school.ui.theme.AppTheme
 @Composable
 fun LoginScreen(
     state: LoginState,
-    onEvent: (LoginEvent) -> Unit
+    onEvent: (LoginEvent) -> Unit,
+    tokenProvider: TokenProvider
 ) {
 
     Column(
@@ -47,7 +49,7 @@ fun LoginScreen(
             ),
         horizontalAlignment = Alignment.CenterHorizontally
     ){
-        TopBar()
+        TopBar(tokenProvider)
         Column (
             modifier = Modifier
                 .fillMaxWidth()
@@ -58,10 +60,12 @@ fun LoginScreen(
             Header()
             EtLogin(
                 state.login,
+                !state.errorMessage.isNullOrEmpty(),
                 onEvent
             )
             EtPassword (
                 state.password,
+                !state.errorMessage.isNullOrEmpty(),
                 onEvent
             )
             if (!state.errorMessage.isNullOrEmpty()) {
@@ -101,6 +105,7 @@ fun Header(){
 @Composable
 fun EtLogin(
     login : String,
+    isError : Boolean,
     onEvent: (LoginEvent) -> Unit
 ){
     Row (
@@ -113,15 +118,24 @@ fun EtLogin(
                 .fillMaxWidth()
                 .padding(horizontal = 70.dp)
             ,
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = AppTheme.colors.textColors.primary,
-                errorContainerColor = AppTheme.colors.etColors.etErrorColor,
+            colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = AppTheme.colors.etColors.etFillColor,
                 unfocusedContainerColor = AppTheme.colors.etColors.etFillColor,
+                focusedBorderColor = if (isError) {
+                    AppTheme.colors.etColors.etErrorColor
+                } else {
+                    AppTheme.colors.etColors.etStrokeColor
+                },
+                unfocusedBorderColor = if (isError) {
+                    AppTheme.colors.etColors.etErrorColor
+                } else {
+                    AppTheme.colors.etColors.etStrokeColor
+                },
+                errorBorderColor = AppTheme.colors.etColors.etErrorColor,
+                focusedTextColor = AppTheme.colors.textColors.primary,
+                unfocusedTextColor = AppTheme.colors.textColors.primary,
                 focusedPlaceholderColor = AppTheme.colors.textColors.gray900,
-                unfocusedPlaceholderColor = AppTheme.colors.textColors.gray900,
-                focusedIndicatorColor = AppTheme.colors.etColors.etStrokeColor,
-                unfocusedIndicatorColor = AppTheme.colors.etColors.etStrokeColor,
+                unfocusedPlaceholderColor = AppTheme.colors.textColors.gray900
             ),
             shape = RoundedCornerShape(10.dp),
             value = login,
@@ -143,6 +157,7 @@ fun EtLogin(
 @Composable
 fun EtPassword(
     password : String,
+    isError: Boolean,
     onEvent: (LoginEvent) -> Unit
 ){
     Row (
@@ -155,15 +170,24 @@ fun EtPassword(
                 .fillMaxWidth()
                 .padding(horizontal = 70.dp)
             ,
-            colors = TextFieldDefaults.colors(
-                focusedTextColor = AppTheme.colors.textColors.primary,
-                errorContainerColor = AppTheme.colors.etColors.etErrorColor,
+            colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = AppTheme.colors.etColors.etFillColor,
                 unfocusedContainerColor = AppTheme.colors.etColors.etFillColor,
+                focusedBorderColor = if (isError) {
+                    AppTheme.colors.etColors.etErrorColor
+                } else {
+                    AppTheme.colors.etColors.etStrokeColor
+                },
+                unfocusedBorderColor = if (isError) {
+                    AppTheme.colors.etColors.etErrorColor
+                } else {
+                    AppTheme.colors.etColors.etStrokeColor
+                },
+                errorBorderColor = AppTheme.colors.etColors.etErrorColor,
+                focusedTextColor = AppTheme.colors.textColors.primary,
+                unfocusedTextColor = AppTheme.colors.textColors.primary,
                 focusedPlaceholderColor = AppTheme.colors.textColors.gray900,
-                unfocusedPlaceholderColor = AppTheme.colors.textColors.gray900,
-                focusedIndicatorColor = AppTheme.colors.etColors.etStrokeColor,
-                unfocusedIndicatorColor = AppTheme.colors.etColors.etStrokeColor,
+                unfocusedPlaceholderColor = AppTheme.colors.textColors.gray900
             ),
             shape = RoundedCornerShape(10.dp),
             value = password,

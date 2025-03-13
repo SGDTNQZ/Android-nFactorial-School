@@ -1,5 +1,6 @@
 package com.projects.nfactorial_school.presentation.navBar
 
+import android.app.Activity
 import android.content.Intent
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,7 +18,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.projects.nfactorial_school.R
 import com.projects.nfactorial_school.presentation.blogs.BlogsActivity
-import com.projects.nfactorial_school.presentation.courses.CoursesActivity
+import com.projects.nfactorial_school.presentation.catalog.CatalogActivity
 import com.projects.nfactorial_school.presentation.main.MainActivity
 import com.projects.nfactorial_school.presentation.reviews.ReviewActivity
 import com.projects.nfactorial_school.ui.theme.AppTheme
@@ -47,7 +48,7 @@ fun NavBar(
             unselectedIconResource = R.drawable.ic_courses,
             selectedIconResource = R.drawable.ic_courses_active,
             contentDescription = R.string.bb_reviews,
-            targetActivity = CoursesActivity::class.java
+            targetActivity = CatalogActivity::class.java
         ),
         NavItem(
             labelResource = R.string.bb_reviews,
@@ -77,6 +78,7 @@ fun NavBar(
                 onClick = {
                     if (!selected){
                         context.startActivity(Intent(context, item.targetActivity))
+                        (context as Activity).finish()
                     }
                 },
                 label = {

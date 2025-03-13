@@ -1,4 +1,4 @@
-package com.projects.nfactorial_school.presentation.courses.state
+package com.projects.nfactorial_school.presentation.catalog.state
 
 data class CourseDescriptionCard(
     val imageRes: Int,

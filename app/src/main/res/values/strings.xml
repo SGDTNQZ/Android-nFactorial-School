@@ -46,8 +46,13 @@
     <string name="errorLoginEmpty" translatable="true">Login and password can not be empty</string>
     <string name="errorAuth" translatable="true">Authorization error</string>
 
+    <string name="error_bad_request" translatable="true">Bad request</string>
     <string name="error_auth" translatable="true">Authorization error</string>
+    <string name="error_forbidden" translatable="true">Forbidden</string>
+    <string name="error_not_found" translatable="true">Not found</string>
     <string name="error_user_exists" translatable="true">User with this login already exists</string>
+    <string name="error_internal" translatable="true">Internal server error</string>
+    <string name="error_service_unavailable" translatable="true">Service unavailable</string>
     <string name="error_server" translatable="true">Server error: %1$d</string>
     <string name="error_unknown" translatable="true">Unknown error</string>
 

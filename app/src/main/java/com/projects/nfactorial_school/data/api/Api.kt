@@ -6,6 +6,7 @@ import com.projects.nfactorial_school.data.model.LoginResponse
 import com.projects.nfactorial_school.data.model.MainResponse
 import com.projects.nfactorial_school.data.model.RegistrationRequest
 import com.projects.nfactorial_school.data.model.RegistrationResponse
+import com.projects.nfactorial_school.data.model.ValidateResponse
 import retrofit2.http.Body
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -19,6 +20,8 @@ interface Api {
 
     @GET("main")
     suspend fun getMainData(): MainResponse
+    @GET("auth/validate")
+    suspend fun validateToken(): ValidateResponse
 
     @GET("catalog")
     suspend fun getCatalogData(): CatalogResponse

@@ -40,8 +40,13 @@
     <string name="errorLoginEmpty">Логин и пароль не могут быть пустыми</string>
     <string name="errorAuth">Ошибка авторизации</string>
 
+    <string name="error_bad_request">Неверный запрос</string>
     <string name="error_auth">Ошибка авторизации</string>
+    <string name="error_forbidden">Доступ запрещён</string>
+    <string name="error_not_found">Не найдено</string>
     <string name="error_user_exists">Пользователь с таким логином уже существует</string>
+    <string name="error_internal">Внутренняя ошибка сервера</string>
+    <string name="error_service_unavailable">Сервис недоступен</string>
     <string name="error_server">Ошибка сервера: %1$d</string>
     <string name="error_unknown">Неизвестная ошибка</string>
 </resources>

@@ -1,12 +1,11 @@
 package com.projects.nfactorial_school.presentation.main.event
 
-import com.projects.nfactorial_school.presentation.courses.state.CourseDescriptionCard
-import com.projects.nfactorial_school.presentation.courses.state.CoursesFilter
-
 sealed class MainEvent {
+    object OnLoadData : MainEvent()
+    object OnRetry : MainEvent()
     object OnApplyClicked : MainEvent()
-    data class OnFilterSelected(val filter: CoursesFilter) : MainEvent()
+    data class OnFilterSelected(val tags: String?) : MainEvent()
     object OnAllCoursesClicked : MainEvent()
-    data class OnCourseClicked(val course: CourseDescriptionCard) : MainEvent()
-
+    data class OnCourseClicked(val courseId: Int) : MainEvent()
 }
+

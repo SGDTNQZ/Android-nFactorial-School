@@ -15,7 +15,7 @@
         android:theme="@style/Theme.NFactorialSchool"
         tools:targetApi="31">
         <activity
-            android:name=".presentation.login.LoginActivity"
+            android:name=".presentation.splash.SplashActivity"
             android:exported="true"
             android:theme="@style/Theme.NFactorialSchool">
             <intent-filter>
@@ -24,35 +24,41 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".presentation.login.LoginActivity"
+            android:exported="true"
+            android:theme="@style/Theme.NFactorialSchool">
+        </activity>
+
         <activity
             android:name=".presentation.registration.RegistrationActivity"
             android:exported="true"
-            android:theme="@style/Theme.NFactorialSchool"
-            >
+            android:theme="@style/Theme.NFactorialSchool">
         </activity>
+
         <activity
             android:name=".presentation.main.MainActivity"
             android:exported="true"
             android:theme="@style/Theme.NFactorialSchool">
-
         </activity>
+
         <activity
-            android:name=".presentation.courses.CoursesActivity"
+            android:name=".presentation.catalog.CatalogActivity"
             android:exported="true"
             android:theme="@style/Theme.NFactorialSchool">
-
         </activity>
+
         <activity
             android:name=".presentation.blogs.BlogsActivity"
             android:exported="true"
             android:theme="@style/Theme.NFactorialSchool">
-
         </activity>
+
         <activity
             android:name=".presentation.reviews.ReviewActivity"
             android:exported="true"
             android:theme="@style/Theme.NFactorialSchool">
-
         </activity>
 
     </application>

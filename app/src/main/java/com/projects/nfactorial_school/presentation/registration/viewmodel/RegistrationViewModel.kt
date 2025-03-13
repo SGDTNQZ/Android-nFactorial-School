@@ -10,6 +10,8 @@ import com.projects.nfactorial_school.presentation.registration.state.Registrati
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asSharedFlow
+import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
 class RegistrationViewModel(
@@ -21,16 +23,15 @@ class RegistrationViewModel(
     val state: StateFlow<RegistrationState> = _state
 
     private val _effect = MutableSharedFlow<RegistrationEffect>()
-
-
+    val effect = _effect.asSharedFlow()
 
     fun dispatch(event: RegistrationEvent) {
         when (event) {
             is RegistrationEvent.OnLoginChange -> {
-                _state.value = _state.value.copy(login = event.login)
+                _state.update { it.copy(login = event.login) }
             }
             is RegistrationEvent.OnPasswordChange -> {
-                _state.value = _state.value.copy(password = event.password)
+                _state.update { it.copy(password = event.password) }
             }
             is RegistrationEvent.OnRegisterClicked -> {
                 register()
@@ -40,20 +41,18 @@ class RegistrationViewModel(
 
     private fun register() {
         viewModelScope.launch {
-            _state.value = _state.value.copy(isLoading = true, errorMessage = null)
+            _state.update { it.copy(isLoading = true, errorMessage = null) }
             try {
                 val response = authRepository.register(
                     login = _state.value.login,
                     password = _state.value.password
                 )
-                _state.value = _state.value.copy(token = response.token, isLoading = false)
-                _effect.emit(RegistrationEffect.NavigateToHome)
+                _state.update { it.copy(token = response.token, isLoading = false) }
+                _effect.emit(RegistrationEffect.NavigateToMain)
             } catch (e: Exception) {
-                val errorMessage = errorHandler.handle(e)
-                _state.value = _state.value.copy(
-                    isLoading = false,
-                    errorMessage = errorMessage
-                )
+                val errorMsg = errorHandler.handle(e)
+                _state.update { it.copy(isLoading = false, errorMessage = errorMsg) }
+                _effect.emit(RegistrationEffect.ShowError(errorMsg))
             }
         }
     }

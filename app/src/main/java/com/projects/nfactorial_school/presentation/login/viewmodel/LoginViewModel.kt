@@ -1,4 +1,4 @@
-package com.projects.nfactorial_school.presentation.login.viewModel
+package com.projects.nfactorial_school.presentation.login.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -28,11 +28,17 @@ class LoginViewModel(
 
     fun dispatch(event: LoginEvent) {
         when (event) {
-            is LoginEvent.OnLoginChange -> _state.value = _state.value.copy(login = event.login)
-            is LoginEvent.OnPasswordChange -> _state.value = _state.value.copy(password = event.password)
-            is LoginEvent.OnLoginClick -> login()
-            is LoginEvent.OnNavigateToRegistration -> {
-                viewModelScope.launch { _effect.emit(LoginEffect.NavigateToRegistration) }
+            is LoginEvent.OnLoginChange ->
+                _state.value = _state.value.copy(login = event.login)
+            is LoginEvent.OnPasswordChange ->
+                _state.value = _state.value.copy(password = event.password)
+            is LoginEvent.OnLoginClick ->
+                login()
+            is LoginEvent.OnNavigateToRegistration ->
+                {
+                viewModelScope.launch {
+                    _effect.emit(LoginEffect.NavigateToRegistration)
+                }
             }
         }
     }
@@ -45,10 +51,12 @@ class LoginViewModel(
                 _state.value = _state.value.copy(token = response.token, isLoading = false)
                 _effect.emit(LoginEffect.NavigateToHome)
             } catch (e: Exception) {
+                _state.value = _state.value.copy(isLoading = false)
                 val errorMessage = errorHandler.handle(e)
                 _state.value = _state.value.copy(errorMessage = errorMessage)
                 _effect.emit(LoginEffect.ShowError(errorMessage))
             }
         }
     }
+
 }

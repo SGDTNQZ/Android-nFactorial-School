@@ -22,7 +22,7 @@ class SharedPrefTokenProvider(context: Context) : TokenProvider {
         prefs.edit().putString("token", token).apply()
     }
 
-    fun clearToken() {
+    override fun clearToken() {
         prefs.edit().remove(KEY_TOKEN).apply()
     }
 }

@@ -1,4 +1,4 @@
-package com.projects.nfactorial_school.presentation.courses.view
+package com.projects.nfactorial_school.presentation.catalog.view
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -16,18 +16,20 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.projects.nfactorial_school.R
-import com.projects.nfactorial_school.presentation.courses.state.CourseDescriptionCard
+import com.projects.nfactorial_school.data.token.TokenProvider
+import com.projects.nfactorial_school.presentation.catalog.state.CourseDescriptionCard
 import com.projects.nfactorial_school.presentation.navBar.NavBar
 import com.projects.nfactorial_school.presentation.topBar.TopBar
 import com.projects.nfactorial_school.ui.theme.AppTheme
 
 @Composable
-fun CoursesScreen(){
+fun CoursesScreen(
+    tokenProvider: TokenProvider
+){
     val listOfCourses = listOf(
         CourseDescriptionCard(
             imageRes = R.drawable.img_kid,
@@ -103,7 +105,7 @@ fun CoursesScreen(){
             ),
 
     ) {
-        TopBar()
+        TopBar(tokenProvider)
         Box (
             Modifier
                 .fillMaxWidth()
@@ -111,20 +113,20 @@ fun CoursesScreen(){
             ,
         ){
 
-            LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalArrangement = Arrangement.spacedBy(4.dp),
-                modifier = Modifier
-                    .padding(top = 14.dp,start = 4.dp, end = 4.dp)
-                    .fillMaxHeight()
-
-            ) {
-                items(listOfCourses){
-                        item ->
-                    CourseCard(courseInfo = item)
-                }
-            }
+//            LazyVerticalGrid(
+//                columns = GridCells.Fixed(2),
+//                horizontalArrangement = Arrangement.spacedBy(4.dp),
+//                verticalArrangement = Arrangement.spacedBy(4.dp),
+//                modifier = Modifier
+//                    .padding(top = 14.dp,start = 4.dp, end = 4.dp)
+//                    .fillMaxHeight()
+//
+//            ) {
+//                items(listOfCourses){
+//                        item ->
+//                    CourseCard(item.)
+//                }
+//            }
 
 
             ApplyBtn()
