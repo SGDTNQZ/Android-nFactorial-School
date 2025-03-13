@@ -5,4 +5,7 @@ sealed class CatalogEvent {
     data class OnFilterSelected(val filter: String?) : CatalogEvent()
     object OnApplyClicked : CatalogEvent()
     object OnCourseSelected : CatalogEvent()
+    object OnRetry : CatalogEvent() {
+
+    }
 }

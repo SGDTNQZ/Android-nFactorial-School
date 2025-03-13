@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -35,6 +36,7 @@ import com.projects.nfactorial_school.presentation.catalog.view.FilterButton
 import com.projects.nfactorial_school.presentation.main.event.MainEvent
 import com.projects.nfactorial_school.presentation.main.state.MainState
 import com.projects.nfactorial_school.presentation.navBar.NavBar
+import com.projects.nfactorial_school.presentation.reviews.event.ReviewEvent
 import com.projects.nfactorial_school.presentation.topBar.TopBar
 import com.projects.nfactorial_school.ui.theme.AppTheme
 
@@ -56,6 +58,33 @@ fun MainScreen(
                     trackColor = AppTheme.colors.brandColors.lightGray900
                 )
             }
+        }
+        state.errorMessage?.isNotEmpty() == true -> {
+            TopBar(tokenProvider)
+            Box(
+                modifier = Modifier
+                    .fillMaxSize(),
+                contentAlignment = Alignment.Center
+            ) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(
+                        text = "Ошибка: ${state.errorMessage}",
+                        style = AppTheme.fonts.bodyTypography.bodyRegular,
+                        color = AppTheme.colors.textColors.primary
+                    )
+                    Spacer(modifier = Modifier.height(8.dp))
+                    Button(
+                        onClick = { onEvent(MainEvent.OnRetry) },
+                        colors = ButtonDefaults.buttonColors(
+                            containerColor = AppTheme.colors.brandColors.red,
+                            contentColor = AppTheme.colors.textColors.white
+                        ),
+                    ) {
+                        Text("Повторить")
+                    }
+                }
+            }
+            NavBar(0)
         }
         else -> {
             Column(

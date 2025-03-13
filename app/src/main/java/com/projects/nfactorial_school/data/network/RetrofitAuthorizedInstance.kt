@@ -7,12 +7,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 object RetrofitAuthorizedInstance {
     private const val BASE_URL = "https://nfactorialappbackend.onrender.com/"
-
-    fun <T : Any> create(authInterceptor: AuthInterceptor, service: Class<T>): T {
+    fun <T> create(authInterceptor: AuthInterceptor, service: Class<T>): T {
         val client = OkHttpClient.Builder()
             .addInterceptor(authInterceptor)
             .build()
-
         return Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(client)
@@ -20,5 +18,5 @@ object RetrofitAuthorizedInstance {
             .build()
             .create(service)
     }
-
 }
+

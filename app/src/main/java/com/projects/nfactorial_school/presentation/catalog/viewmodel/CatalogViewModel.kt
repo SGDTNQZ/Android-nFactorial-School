@@ -33,6 +33,10 @@ class CatalogViewModel(
             }
             is CatalogEvent.OnCourseSelected -> {
             }
+            is CatalogEvent.OnRetry -> {
+
+            }
+
         }
     }
 
